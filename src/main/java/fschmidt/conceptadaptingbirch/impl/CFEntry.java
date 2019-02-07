@@ -22,6 +22,7 @@
  */
 package fschmidt.conceptadaptingbirch.impl;
 
+import fschmidt.conceptadaptingbirch.impl.decay.DecayFunction;
 import fschmidt.conceptadaptingbirch.utils.VectorUtil;
 import static fschmidt.conceptadaptingbirch.utils.VectorUtil.divVec;
 import static fschmidt.conceptadaptingbirch.utils.VectorUtil.multVec;
@@ -29,6 +30,7 @@ import static fschmidt.conceptadaptingbirch.utils.VectorUtil.subVec;
 import static fschmidt.conceptadaptingbirch.utils.VectorUtil.sumVec;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.apache.commons.math3.analysis.function.Logistic;
 
 /**
  *
@@ -303,8 +305,8 @@ public class CFEntry {
      *
      * @param type
      */
-    public void decay(DecayType type) {
-        double decayFactor = calculateDecay(type);
+    public void decay(DecayFunction type, double... parameters) {
+        double decayFactor = calculateDecay(type, parameters);
         double[] centroid = getCentroid();
 
         n -= decayFactor;
@@ -312,21 +314,8 @@ public class CFEntry {
         sumX2 = subVec(sumX2, multVec(multVec(centroid, centroid), decayFactor));
     }
 
-    private double calculateDecay(DecayType type) {
-        double k = 0.001; //groth rate
-        double L = 0.2;//maximum hight
-        if(null==type){
-            return 0;
-        }else switch (type) {
-            case STATIC:
-                return L;
-            case LOGISTIC:
-                return  L / (1.0+ Math.exp(-k * (time)));
-            case EXPONENTIAL:
-                return k *Math.exp(-k * (time));
-            default:
-                return 0;
-        }
+    private double calculateDecay(DecayFunction type, double... parameters) {
+        return type.getValue(time, parameters);
     }
 
     public boolean isInside(CFEntry e) {

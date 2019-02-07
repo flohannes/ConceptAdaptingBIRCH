@@ -22,6 +22,7 @@
  */
 package fschmidt.conceptadaptingbirch.impl;
 
+import fschmidt.conceptadaptingbirch.impl.decay.DecayFunction;
 import fschmidt.conceptadaptingbirch.utils.DistanceUtil;
 import fschmidt.conceptadaptingbirch.utils.VectorUtil;
 import static java.lang.Math.max;
@@ -69,7 +70,7 @@ public class CFTree {
     private boolean useSGDThreshold = false;
 
     private boolean useDecay = false;
-    private CFEntry.DecayType decayType;
+    private DecayFunction decayType;
 
     /**
      *
@@ -103,9 +104,9 @@ public class CFTree {
         this.automaticRebuild = auto;
     }
 
-    public void useDecay(CFEntry.DecayType type) {
+    public void useDecay(DecayFunction function) {
         this.useDecay = true;
-        this.decayType = type;
+        this.decayType = function;
     }
 
 //    /**
@@ -609,12 +610,13 @@ public class CFTree {
     public void decay() {
         //increase time in all leaf nodes
         CFNode l = leafListStart.getNextLeaf();
+        double countLeafEntries = 1.0 / (double) countLeafEntries();
         while (l != null) {
             if (!l.isDummy()) {
                 List<CFEntry> removeEntries = new ArrayList<>();
                 for (CFEntry e : l.getEntries()) {
                     e.increaseTime();
-                    e.decay(decayType);
+                    e.decay(decayType, countLeafEntries);
                     if (e.getN() <= 0) {
                         removeEntries.add(e);
                     }

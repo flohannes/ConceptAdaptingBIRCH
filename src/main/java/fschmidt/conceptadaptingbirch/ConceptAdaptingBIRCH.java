@@ -1,7 +1,7 @@
 package fschmidt.conceptadaptingbirch;
 
-import fschmidt.conceptadaptingbirch.impl.CFEntry;
 import fschmidt.conceptadaptingbirch.impl.CFTree;
+import fschmidt.conceptadaptingbirch.impl.decay.DecayFunction;
 
 /**
  *
@@ -11,9 +11,9 @@ public class ConceptAdaptingBIRCH {
 
     private final CFTree cfTree;
     
-    public ConceptAdaptingBIRCH(CFEntry.DecayType decayType, int maxNodeEntries, double initialThreshold) {
+    public ConceptAdaptingBIRCH(DecayFunction decayFunction, int maxNodeEntries, double initialThreshold) {
         cfTree = new CFTree(maxNodeEntries, initialThreshold, true);
-        cfTree.useDecay(decayType);
+        cfTree.useDecay(decayFunction);
     }
 
     public void train(double[] values) {
