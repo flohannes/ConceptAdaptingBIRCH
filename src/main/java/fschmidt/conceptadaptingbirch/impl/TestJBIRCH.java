@@ -1,4 +1,4 @@
-package fschmidt.conceptadaptingbirch.jbirch;
+package fschmidt.conceptadaptingbirch.impl;
 
 /**
  *

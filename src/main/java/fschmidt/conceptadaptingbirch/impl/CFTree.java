@@ -20,7 +20,7 @@
  *  CFTree.java
  *  Copyright (C) 2009 Roberto Perdisci (roberto.perdisci@gmail.com)
  */
-package fschmidt.conceptadaptingbirch.jbirch;
+package fschmidt.conceptadaptingbirch.impl;
 
 import fschmidt.conceptadaptingbirch.utils.DistanceUtil;
 import fschmidt.conceptadaptingbirch.utils.VectorUtil;

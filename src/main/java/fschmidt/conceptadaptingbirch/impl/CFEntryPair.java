@@ -21,7 +21,7 @@
  *  Copyright (C) 2009 Roberto Perdisci (roberto.perdisci@gmail.com)
  */
 
-package fschmidt.conceptadaptingbirch.jbirch;
+package fschmidt.conceptadaptingbirch.impl;
 
 
 /**

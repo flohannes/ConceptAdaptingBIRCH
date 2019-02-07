@@ -1,7 +1,7 @@
 package fschmidt.conceptadaptingbirch;
 
-import fschmidt.conceptadaptingbirch.jbirch.CFEntry;
-import fschmidt.conceptadaptingbirch.jbirch.CFTree;
+import fschmidt.conceptadaptingbirch.impl.CFEntry;
+import fschmidt.conceptadaptingbirch.impl.CFTree;
 
 /**
  *

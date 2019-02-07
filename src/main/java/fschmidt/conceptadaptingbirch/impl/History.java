@@ -1,4 +1,4 @@
-package fschmidt.conceptadaptingbirch.jbirch;
+package fschmidt.conceptadaptingbirch.impl;
 
 import com.yahoo.labs.samoa.instances.*;
 import moa.classifiers.functions.SGD;
